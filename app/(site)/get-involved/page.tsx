@@ -9,6 +9,7 @@ import { ContactCard } from "@/components/ui/contact-card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BRAND_ICONS } from "@/components/ui/icons";
+import { socialLinks } from "@/constants/social-links";
 
 export const metadata: Metadata = {
   title: "Get Involved",
@@ -17,43 +18,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/get-involved" },
 };
 
-const communityLinks = [
-  {
-    name: "Slack",
-    href: "/links/slack",
-    iconId: "slack",
-  },
-  {
-    name: "Luma",
-    href: "https://luma.com/techtank",
-    iconId: "luma",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com/company/techtank-to",
-    iconId: "linkedin",
-  },
-  {
-    name: "Instagram",
-    href: "https://instagram.com/techtankto",
-    iconId: "instagram",
-  },
-  {
-    name: "GitHub",
-    href: "https://github.com/techtankto",
-    iconId: "github",
-  },
-  {
-    name: "YouTube",
-    href: "https://youtube.com/@TechTankTo",
-    iconId: "youtube",
-  },
-  {
-    name: "Meetup",
-    href: "https://meetup.com/techtank-to",
-    iconId: "meetup",
-  },
-];
+const communityLinks = ["slack", "luma", "linkedin", "instagram", "github", "youtube", "meetup"].map(
+  (id) => socialLinks[id],
+);
 
 const whyGetInvolved = [
   {
@@ -102,11 +69,11 @@ export default function GetInvolvedPage() {
             </span>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {communityLinks.map((link) => {
-                const Icon = BRAND_ICONS[link.iconId];
+                const Icon = BRAND_ICONS[link.id];
                 return (
                   <a
                     key={link.name}
-                    href={link.href}
+                    href={link.url}
                     target="_blank"
                     rel="noreferrer"
                     className="group glass relative w-full overflow-hidden rounded-2xl transition-transform hover:scale-[1.03]"

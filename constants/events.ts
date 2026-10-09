@@ -1,4 +1,4 @@
-import type { Event } from "@/app/(site)/events/actions";
+import type { Event } from "@/types/event";
 import { sponsors } from "./sponsors";
 
 export const events: Event[] = [

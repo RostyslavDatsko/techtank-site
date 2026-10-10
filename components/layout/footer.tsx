@@ -11,11 +11,15 @@ type FooterSection = { title: string; links: FooterLink[] };
 const footerLinks: Record<string, FooterSection> = {
   community: {
     title: "Community",
-    links: (["luma", "meetup", "slack", "linkedin", "instagram", "github", "youtube"] as const).map((id) => ({
-      name: socialLinks[id].name,
-      href: socialLinks[id].url,
-      external: true,
-    })),
+    links: [
+      { name: socialLinks.luma.name, href: socialLinks.luma.url, external: true },
+      { name: socialLinks.meetup.name, href: socialLinks.meetup.url, external: true },
+      { name: socialLinks.slack.name, href: socialLinks.slack.url, external: true },
+      { name: socialLinks.linkedin.name, href: socialLinks.linkedin.url, external: true },
+      { name: socialLinks.instagram.name, href: socialLinks.instagram.url, external: true },
+      { name: socialLinks.github.name, href: socialLinks.github.url, external: true },
+      { name: socialLinks.youtube.name, href: socialLinks.youtube.url, external: true },
+    ],
   },
   about: {
     title: "About",

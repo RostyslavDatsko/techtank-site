@@ -10,11 +10,11 @@ import { SponsorsMarquee } from "@/components/ui/sponsors-marquee";
 import { ToolsStrip } from "@/components/ui/tools-grid";
 import { RoleCard } from "@/components/ui/role-card";
 import { roleCardsData } from "@/constants/role-cards";
-import { EventCard } from "@/components/ui/event-card";
+import { socialLinks } from "@/constants/social-links";
 import { SocialFeed } from "@/components/ui/social-feed";
 import { AutoplayVideo } from "@/components/ui/autoplay-video";
 import { getCoverImage, getCoverVideo, getInstagramPostsByIds } from "@/constants/instagram-posts";
-import { getAllLumaEvents } from "./events/actions";
+import { HomeEventsSection } from "./home-events-section";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -27,8 +27,6 @@ function captionToAlt(caption: string): string {
 }
 
 export default async function HomePage() {
-  const { upcoming: featuredEvents, past: pastEvents } = await getAllLumaEvents();
-
   const heroPosts = getInstagramPostsByIds([
     "2026-06-09-DZWPNciI8eO", // Docebo Brainstation (Jun 2026)
     "2026-04-10-DW9vcgiPHx", // Code diversity (Apr 2026)
@@ -131,17 +129,7 @@ export default async function HomePage() {
       <Section>
         <SectionHeader overline="Events" title="Recent happenings" className="mb-6" />
 
-        {/* Recent Events - Large featured + smaller cards */}
-        <div className="mb-4 grid gap-4 lg:grid-cols-2">
-          {featuredEvents.map((event) => (
-            <EventCard key={event.id} event={event} variant="featured" />
-          ))}
-        </div>
-        <div className="mb-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
-          {pastEvents.map((event) => (
-            <EventCard key={event.id} event={event} variant="compact" />
-          ))}
-        </div>
+        <HomeEventsSection />
 
         {/* Sponsors */}
         <div className="mb-6">
@@ -154,14 +142,14 @@ export default async function HomePage() {
         {/* CTAs */}
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button variant="primary" size="md" asChild>
-            <a href="https://luma.com/techtank" target="_blank" rel="noopener noreferrer">
+            <a href={socialLinks.luma.url} target="_blank" rel="noopener noreferrer">
               <LumaIcon className="mr-2 size-4" />
               Luma
               <ExternalLink className="ml-2 size-4" aria-hidden="true" />
             </a>
           </Button>
           <Button variant="outline" size="md" asChild>
-            <a href="https://meetup.com/techtank-to" target="_blank" rel="noopener noreferrer">
+            <a href={socialLinks.meetup.url} target="_blank" rel="noopener noreferrer">
               <MeetupIcon className="mr-2 size-4" />
               Meetup
               <ExternalLink className="ml-2 size-4" aria-hidden="true" />
